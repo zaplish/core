@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Providers;
-
+namespace Zaplish\Core\Providers;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
@@ -26,27 +25,48 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Settings
-        Config::set('cms.theme', app(Settings::class)->get('cms.theme', 'laracms'));
-        Config::set('cms.name', app(Settings::class)->get('cms.name', 'laraCMS'));
-
-        // View namespaces
-        View::addNamespace('admin', resource_path('admin/views'));
-        View::addNamespace('theme', resource_path('themes/' . config('cms.theme') . '/views'));
-
-        // Language namespaces
-        $this->loadTranslationsFrom(base_path('lang/admin'), 'admin');
-        $this->loadTranslationsFrom(resource_path('themes/' . config('cms.theme') . '/lang'), 'theme');
-
-        // Current active theme
-        View::share('theme', config('cms.theme'));
-
+        // --- Safe guard: only run if the environment is ready ---
+        if ($this->app->runningInConsole() && ! $this->app->runningUnitTests()) {
+            // During composer install / artisan package:discover
+            // Skip database-related logic to prevent "no such table" errors
+            $this->registerViewsAndTranslations();
+            return;
+        }
+    
+        try {
+            // Settings (wrapped in try so failure won’t kill composer install)
+            $theme = app(Settings::class)->get('cms.theme', 'laracms');
+            $name = app(Settings::class)->get('cms.name', 'laraCMS');
+    
+            Config::set('cms.theme', $theme);
+            Config::set('cms.name', $name);
+        } catch (\Throwable $e) {
+            // Fallback if DB/cache not ready
+            Config::set('cms.theme', 'laracms');
+            Config::set('cms.name', 'laraCMS');
+        }
+    
+        $this->registerViewsAndTranslations();
+    
         // Helpers
+        View::share('theme', config('cms.theme'));
         View::share('assetHelper', AssetHelper::class);
-
+    
         // Validator rules
         $this->registerCustomValidationRules();
     }
+    
+    protected function registerViewsAndTranslations(): void
+    {
+        // View namespaces
+        View::addNamespace('admin', resource_path('admin/views'));
+        View::addNamespace('theme', resource_path('themes/' . config('cms.theme') . '/views'));
+    
+        // Language namespaces
+        $this->loadTranslationsFrom(base_path('lang/admin'), 'admin');
+        $this->loadTranslationsFrom(resource_path('themes/' . config('cms.theme') . '/lang'), 'theme');
+    }
+    
 
     /**
      * Custom validators
