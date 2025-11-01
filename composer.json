@@ -1,4 +1,5 @@
 {
+  "$schema": "https://getcomposer.org/schema.json",
   "name": "zaplish/core",
   "description": "Zaplish CMS Core Package – admin panel, content engine, and APIs.",
   "version": "0.0.1",

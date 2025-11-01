@@ -44,7 +44,7 @@ class MediaService
         // $config = RouteHelper::addListAndEditUris($config);
 
         // $modelClassName = $config['model'] ?? null;
-        // $modelClass = 'App\\Models\\' . $modelClassName;
+        // $modelClass = 'Zaplish\\Core\\Models\\' . $modelClassName;
 
         // if (!class_exists($modelClass)) {
         //     return null;

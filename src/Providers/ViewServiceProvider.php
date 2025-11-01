@@ -4,7 +4,7 @@ namespace Zaplish\Core\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-use App\Models\ContentType;
+use Zaplish\Core\Models\ContentType;
 
 class ViewServiceProvider extends ServiceProvider
 {

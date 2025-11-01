@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Zaplish\Core\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Http\Controllers\Controller;
-use App\Services\ListService;
-use App\Services\FormService;
-use App\Helpers\MediaHelper;
-use App\Helpers\ArrayHelper;
+use Zaplish\Core\Http\Controllers\Controller;
+use Zaplish\Core\Services\ListService;
+use Zaplish\Core\Services\FormService;
+use Zaplish\Core\Helpers\MediaHelper;
+use Zaplish\Core\Helpers\ArrayHelper;
 
 class ApiController extends Controller
 {
@@ -76,7 +76,7 @@ class ApiController extends Controller
         $listConfig = ListService::getConfig($key);
 
         $modelClassName = $listConfig['model'] ?? null;
-        $modelClass = 'App\\Models\\' . $modelClassName;
+        $modelClass = 'Zaplish\\Core\\Models\\' . $modelClassName;
 
         foreach ($items as $item) {
             $model = $modelClass::find($item['id']);
@@ -105,7 +105,7 @@ class ApiController extends Controller
         $listConfig = ListService::getConfig($key);
 
         $modelClassName = $listConfig['model'] ?? null;
-        $modelClass = 'App\\Models\\' . $modelClassName;
+        $modelClass = 'Zaplish\\Core\\Models\\' . $modelClassName;
 
         $item = $modelClass::find($id);
 
@@ -182,7 +182,7 @@ class ApiController extends Controller
 
         $listConfig = ListService::getConfig($key);
         $modelClassName = $listConfig['model'] ?? null;
-        $modelClass = 'App\\Models\\' . $modelClassName;
+        $modelClass = 'Zaplish\\Core\\Models\\' . $modelClassName;
 
         $idList = collect($ids);
         if ($id && !$idList->contains($id)) {
@@ -229,7 +229,7 @@ class ApiController extends Controller
         $listConfig = ListService::getConfig($key);
 
         $modelClassName = $listConfig['model'] ?? null;
-        $modelClass = 'App\\Models\\' . $modelClassName;
+        $modelClass = 'Zaplish\\Core\\Models\\' . $modelClassName;
 
         $model = $modelClass::find($id);
 
@@ -320,7 +320,7 @@ class ApiController extends Controller
 
         $listConfig = ListService::getConfig($key);
         $modelClassName = $listConfig['model'] ?? null;
-        $modelClass = 'App\\Models\\' . $modelClassName;
+        $modelClass = 'Zaplish\\Core\\Models\\' . $modelClassName;
 
         $idList = collect($ids);
         if ($id && !$idList->contains($id)) {
@@ -364,7 +364,7 @@ class ApiController extends Controller
 
         $listConfig = ListService::getConfig($key);
         $modelClassName = $listConfig['model'] ?? null;
-        $modelClass = 'App\\Models\\' . $modelClassName;
+        $modelClass = 'Zaplish\\Core\\Models\\' . $modelClassName;
 
         $idList = collect($ids);
         if ($id && !$idList->contains($id)) {

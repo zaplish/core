@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Zaplish\Core\Http\Controllers;
 
 abstract class Controller
 {

@@ -21,8 +21,12 @@ class LinkAssetsCommand extends Command
         $this->link($coreSource, $coreTarget, 'Admin assets');
 
         // Active theme assets
-        $theme = config('cms.theme', 'zaplish');
-        $themeSource = resource_path("themes/{$theme}/public");
+        $theme = config('cms.theme');
+        if (!file_exists(base_path("themes/{$theme}/public"))) {
+            $this->warn("Theme '{$theme}' not found. Skipping theme assets.");
+            return Command::SUCCESS;
+        }
+        $themeSource = base_path("themes/{$theme}/public");
         $themeTarget = public_path("themes/{$theme}");
         $this->link($themeSource, $themeTarget, "Theme '{$theme}' assets");
 

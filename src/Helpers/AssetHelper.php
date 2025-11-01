@@ -11,7 +11,7 @@ class AssetHelper
      */
     public static function admin(string $path): string
     {
-        return 'vendor/zaplish/admin/' . ltrim($path, '/');
+        return '/vendor/zaplish/admin/' . ltrim($path, '/');
     }
 
     /**
@@ -20,7 +20,7 @@ class AssetHelper
     public static function theme(string $path): string
     {
         $theme = config('cms.theme', 'default');
-        return 'themes/' . $theme . '/' . ltrim($path, '/');
+        return '/themes/' . $theme . '/' . ltrim($path, '/');
     }
 
     /**

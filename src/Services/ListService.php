@@ -43,7 +43,7 @@ class ListService
         $config = RouteHelper::addListAndEditUris($config);
 
         $modelClassName = $config['model'] ?? null;
-        $modelClass = 'App\\Models\\' . $modelClassName;
+        $modelClass = 'Zaplish\\Core\\Models\\' . $modelClassName;
 
         if (!class_exists($modelClass)) {
             return null;
@@ -166,7 +166,7 @@ class ListService
             foreach ($config['filters'] as $key => $filter) {
                 if (!empty($filter['getOptions'])) {
                     $filterModelClassName = $filter['getOptions']['model'];
-                    $filterModelClass = 'App\\Models\\' . $filterModelClassName;
+                    $filterModelClass = 'Zaplish\\Core\\Models\\' . $filterModelClassName;
 
                     $options = $filterModelClass::query();
 

@@ -20,12 +20,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->as('admin.')
                 ->group(__DIR__ . '/../../routes/admin.php');
 
-            // API routes (for CMS data access)
-            // TODO
-            // Route::prefix('api')
-            //     ->middleware('api')
-            //     ->as('api.')
-            //     ->group(__DIR__ . '/../../routes/api.php');
+            // Web routes
+            Route::middleware('web')
+                ->group(__DIR__ . '/../../routes/web.php');
         });
     }
 }

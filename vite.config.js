@@ -13,15 +13,12 @@ export default defineConfig(({ mode }) => {
       sourcemap: isDev,
       rollupOptions: {
         input: {
-          'admin-assets/js/app': 'resources/admin/js/app.js',
-          'admin-assets/css/main': 'resources/admin/scss/main.scss',
-          'themes/laracms/js/app': 'resources/themes/laracms/js/app.js',
-          'themes/laracms/css/main': 'resources/themes/laracms/scss/main.scss',
+          app: 'resources/js/app.js',
+          styles: 'resources/scss/main.scss',
         },
         output: {
-          entryFileNames: isDev ? '[name].js' : '[name].min.js',
-          assetFileNames: isDev ? '[name].css' : '[name].min.css',
-          chunkFileNames: 'chunks/[name].js',
+          entryFileNames: isDev ? 'admin/js/[name].js' : 'admin/js/[name].min.js',
+          assetFileNames: isDev ? 'admin/css/[name].css' : 'admin/css/[name].min.css',
         },
       },
     },

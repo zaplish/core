@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Zaplish\Core\Http\Controllers;
 
-use App\Models\Media;
+use Zaplish\Core\Models\Media;
 use Illuminate\Support\Facades\Storage;
-use App\Helpers\MediaHelper;
+use Zaplish\Core\Http\Controllers\Controller;
 
 class MediaController extends Controller
 {
@@ -58,7 +58,7 @@ class MediaController extends Controller
     {
         if ($media && in_array($media->mime_type, self::$imageMimeTypes)) {
             return response(
-                file_get_contents(public_path('img/image-placeholder.svg')),
+                file_get_contents(public_path('vendor/zaplish/admin/images/image-placeholder.svg')),
                 404,
                 [
                     'Content-Type' => 'image/svg+xml',

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Zaplish\Core\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
-use App\Services\ListService;
-use App\Services\FormService;
+use Zaplish\Core\Http\Controllers\Controller;
+use Zaplish\Core\Services\ListService;
+use Zaplish\Core\Services\FormService;
 
 class ContentController extends Controller
 {

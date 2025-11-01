@@ -2,15 +2,15 @@
 
 namespace Zaplish\Core\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Helpers\CmsHelper;
-use App\Helpers\StringHelper;
-use App\Helpers\ValidateHelper;
-use App\Helpers\MailHelper;
+use Zaplish\Core\Http\Controllers\Controller;
+use Zaplish\Core\Helpers\CmsHelper;
+use Zaplish\Core\Helpers\StringHelper;
+use Zaplish\Core\Helpers\ValidateHelper;
+use Zaplish\Core\Helpers\MailHelper;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use App\Models\User;
+use Zaplish\Core\Models\User;
 use Sqids\Sqids;
 
 class AuthController extends Controller

@@ -2,12 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\MediaController;
+use Zaplish\Core\Http\Controllers\Frontend\FrontendController;
+use Zaplish\Core\Http\Controllers\MediaController;
+
 
 Route::middleware(['web', 'isCmsInstalled'])->group(function () {
     // Home
-    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/', [FrontendController::class, 'index']);
 });
 
 // Media

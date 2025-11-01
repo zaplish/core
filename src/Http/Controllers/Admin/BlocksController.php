@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Zaplish\Core\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use Zaplish\Core\Http\Controllers\Controller;
 
 class BlocksController extends Controller
 {

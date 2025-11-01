@@ -43,7 +43,7 @@ class FormService
         $config = RouteHelper::addListAndEditUris($config);
 
         $modelClassName = $config['model'] ?? null;
-        $modelClass = 'App\\Models\\' . $modelClassName;
+        $modelClass = 'Zaplish\\Core\\Models\\' . $modelClassName;
 
         if (!class_exists($modelClass)) {
             return null;
@@ -98,7 +98,7 @@ class FormService
             ];
         }
 
-        $modelClass = '\\App\\Models\\' . $config['model'];
+        $modelClass = 'Zaplish\\Core\\Models\\' . $config['model'];
         if (!class_exists($modelClass)) {
             return [
                 'success' => false,

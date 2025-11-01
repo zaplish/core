@@ -12,11 +12,11 @@ class CmsSettingsSeeder extends Seeder
         DB::table('settings')->insertOrIgnore([
             [
                 'key' => 'cms.name',
-                'value' => 'laraCMS',
+                'value' => 'Zaplish',
             ],
             [
                 'key' => 'cms.theme',
-                'value' => 'laracms',
+                'value' => 'zaplish',
             ],
         ]);
     }

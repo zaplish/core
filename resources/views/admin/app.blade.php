@@ -8,10 +8,10 @@
     <meta name="color-scheme" content="dark">
     <meta name="robots" content="noindex, nofollow">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" type="image/png" href="{{ $assetHelper::admin('img/favicon.png') }}">
-    <link rel="apple-touch-icon" type="image/png" href="{{ $assetHelper::admin('img/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" href="{{ $assetHelper::admin('images/favicon.png') }}">
+    <link rel="apple-touch-icon" type="image/png" href="{{ $assetHelper::admin('images/apple-touch-icon.png') }}">
     <link rel="manifest" href="{{ $assetHelper::admin('site.webmanifest') }}">
-    <link rel="stylesheet" href="{{ $assetHelper::versioned($assetHelper::admin('css/main.css')) }}">
+    <link rel="stylesheet" href="{{ $assetHelper::versioned($assetHelper::admin('css/styles.css')) }}">
     <script>window.app = @json([
         'locale' => app()->getLocale(),
         'auth' => Auth::check() ? [

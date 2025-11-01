@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Zaplish\Core\Providers\AppServiceProvider;
 use Zaplish\Core\Providers\RouteServiceProvider;
+use Zaplish\Core\Providers\ViewServiceProvider;
 use Zaplish\Core\Http\Middleware\CmsInstalled;
 use Zaplish\Core\Http\Middleware\SetLocale;
 use Zaplish\Core\Http\Middleware\Authenticate;
@@ -26,6 +27,7 @@ class ZaplishServiceProvider extends ServiceProvider
         // Register internal service providers
         $this->app->register(AppServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
+        $this->app->register(ViewServiceProvider::class);
 
         // Merge core config defaults
         $this->mergeConfigFrom(__DIR__ . '/../config/cms.php', 'cms');

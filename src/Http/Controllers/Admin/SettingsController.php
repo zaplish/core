@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Zaplish\Core\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Helpers\SettingsHelper;
+use Zaplish\Core\Http\Controllers\Controller;
+use Zaplish\Core\Helpers\SettingsHelper;
 
 class SettingsController extends Controller
 {
