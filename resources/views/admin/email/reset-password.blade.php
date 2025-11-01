@@ -10,7 +10,7 @@
 
 <div style="margin: 0 0 32px; text-align: center">
     <a
-        class="laracms-mail-button"
+        class="zaplish-mail-button"
         style="color: #fff; text-decoration: none"
         href="{{ $mailData['data']['buttonLink'] }}"
     >

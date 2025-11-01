@@ -4,7 +4,7 @@
 <head>
     <style>
         @media screen {
-            .laracms-mail-button {
+            .zaplish-mail-button {
                 position: relative;
                 display: inline-block;
                 border: 0;
@@ -23,21 +23,21 @@
                 transition: box-shadow 280ms;
             }
 
-            .laracms-mail-button:focus,
-            .laracms-mail-button:hover,
-            .laracms-mail-button:active {
+            .zaplish-mail-button:focus,
+            .zaplish-mail-button:hover,
+            .zaplish-mail-button:active {
                 color: #fff;
                 background-color: #528bff;
                 text-decoration: none;
                 outline: none !important;
             }
 
-            .laracms-mail-button:hover {
+            .zaplish-mail-button:hover {
                 box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
             }
 
-            .laracms-mail-footer a,
-            .laracms-mail-footer a:hover {
+            .zaplish-mail-footer a,
+            .zaplish-mail-footer a:hover {
                 color: #4a5667;
                 text-decoration: underline;
             }
