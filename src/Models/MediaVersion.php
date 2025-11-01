@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace Zaplish\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Helpers\MediaHelper;
+use Zaplish\Core\Helpers\MediaHelper;
 use Illuminate\Support\Facades\Log;
 
 class MediaVersion extends Model

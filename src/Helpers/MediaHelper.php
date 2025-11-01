@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Helpers;
+namespace Zaplish\Core\Helpers;
 
-use App\Models\Media;
-use App\Models\MediaVersion;
+use Zaplish\Core\Models\Media;
+use Zaplish\Core\Models\MediaVersion;
 use Illuminate\Http\UploadedFile;
-
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Encoders\WebpEncoder;
@@ -17,7 +16,7 @@ use Intervention\Image\Exceptions\DecoderException;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
-use App\Helpers\SettingsHelper;
+use Zaplish\Core\Helpers\SettingsHelper;
 
 class MediaHelper
 {

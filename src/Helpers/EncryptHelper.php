@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Helpers;
+namespace Zaplish\Core\Helpers;
 
 class EncryptHelper
 {
     // Encryption key for openssl
-    private static $encryptionKey = 'hKbYVb2C';
+    private static $encryptionKey = 'hKbYVb2C'; // TODO: move to config
 
     // 16-byte IV for AES-128-CTR
-    private static $iv = '1503236205612866';
+    private static $iv = '1503236205612866'; // TODO: move to config
 
     /**
      * Encrypt a given string using AES-128-CTR with OpenSSL.

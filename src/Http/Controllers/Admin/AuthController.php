@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace Zaplish\Core\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Helpers\CmsHelper;

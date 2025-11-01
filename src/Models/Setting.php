@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Zaplish\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

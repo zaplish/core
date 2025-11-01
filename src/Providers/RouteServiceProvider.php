@@ -14,15 +14,14 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->routes(function () {
 
+            // Admin routes (for CMS backend)
+            Route::prefix(config('cms.admin_prefix'))
+                ->middleware(['web'])
+                ->as('admin.')
+                ->group(__DIR__ . '/../../routes/admin.php');
+
+            // API routes (for CMS data access)
             // TODO
-
-            // // Admin routes (for CMS backend)
-            // Route::prefix('admin')
-            //     ->middleware(['web', 'auth'])
-            //     ->as('admin.')
-            //     ->group(__DIR__ . '/../../routes/admin.php');
-
-            // // API routes (for CMS data access)
             // Route::prefix('api')
             //     ->middleware('api')
             //     ->as('api.')

@@ -1,17 +1,11 @@
 <?php
 
+namespace App\Routes;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\ContentController;
-use App\Http\Controllers\Admin\SettingsController;
-use App\Http\Controllers\Admin\ThemesController;
-use App\Http\Controllers\Admin\MenusController;
-use App\Http\Controllers\Admin\FormsController;
-use App\Http\Controllers\Admin\BlocksController;
+use Zaplish\Core\Http\Controllers\Admin\AuthController;
 
-Route::middleware(['web', 'isCmsInstalled', 'setLocale'])->prefix('admin')->name('admin.')->group(function () {
-
+Route::middleware(['cms.installed', 'locale.set'])->group(function () {
     // Install
     Route::get('/install', [AuthController::class, 'install'])->name('install');
     Route::post('/install', [AuthController::class, 'installRequest'])->name('install-request');
@@ -29,7 +23,7 @@ Route::middleware(['web', 'isCmsInstalled', 'setLocale'])->prefix('admin')->name
     Route::post('/new-password', [AuthController::class, 'newPasswordRequest'])->name('new-password-request');
 });
 
-Route::middleware(['web', 'auth', 'authGuard', 'updateLastSeen', 'isCmsInstalled', 'setLocale'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'authGuard', 'updateLastSeen', 'isCmsInstalled', 'setLocale'])->group(function () {
     // Auth
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::post('/delete-account', [AuthController::class, 'deleteAccount'])->name('delete-account');
@@ -106,22 +100,22 @@ Route::middleware(['web', 'auth', 'authGuard', 'updateLastSeen', 'isCmsInstalled
         Route::get('groups', [BlocksController::class, 'groups'])->name('groups');
     });
 
-    // Api
-    Route::middleware('api')->prefix('api')
-        ->name('api.')
-        ->controller(\App\Http\Controllers\Admin\ApiController::class)
-        ->group(function () {
-            Route::post('update-user-config', 'updateUserConfig')->name('update-user-config');
-            Route::post('list', 'list')->name('list');
-            Route::post('save-form', 'saveForm')->name('save-form');
-            Route::post('reorder-list', 'reorderList')->name('reorder-list');
-            Route::post('reorder-item', 'reorderItem')->name('reorder-item');
-            Route::post('toggle', 'toggle')->name('toggle');
-            Route::post('delete', 'delete')->name('delete');
-            Route::post('restore', 'restore')->name('restore');
-            Route::post('duplicate', 'duplicate')->name('duplicate');
-            Route::post('media-upload', 'mediaUpload')->name('media-upload');
-            Route::post('save-user-settings', 'saveUserSettings')->name('save-user-settings');
-            Route::post('remove-user-settings', 'removeUserSettings')->name('remove-user-settings');
-        });
+    // // Api
+    // Route::middleware('api')->prefix('api')
+    //     ->name('api.')
+    //     ->controller(\App\Http\Controllers\Admin\ApiController::class)
+    //     ->group(function () {
+    //         Route::post('update-user-config', 'updateUserConfig')->name('update-user-config');
+    //         Route::post('list', 'list')->name('list');
+    //         Route::post('save-form', 'saveForm')->name('save-form');
+    //         Route::post('reorder-list', 'reorderList')->name('reorder-list');
+    //         Route::post('reorder-item', 'reorderItem')->name('reorder-item');
+    //         Route::post('toggle', 'toggle')->name('toggle');
+    //         Route::post('delete', 'delete')->name('delete');
+    //         Route::post('restore', 'restore')->name('restore');
+    //         Route::post('duplicate', 'duplicate')->name('duplicate');
+    //         Route::post('media-upload', 'mediaUpload')->name('media-upload');
+    //         Route::post('save-user-settings', 'saveUserSettings')->name('save-user-settings');
+    //         Route::post('remove-user-settings', 'removeUserSettings')->name('remove-user-settings');
+    //     });
 });

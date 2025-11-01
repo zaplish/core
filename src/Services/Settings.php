@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace Zaplish\Core\Services;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +11,7 @@ class Settings
 
     public function __construct()
     {
-        $this->settings = Cache::rememberForever('settings.all', function () {
+        $this->settings = Cache::rememberForever('admin.settings.all', function () {
             return DB::table('settings')->pluck('value', 'key')->toArray();
         });
     }
@@ -28,6 +28,6 @@ class Settings
 
     public function clearCache()
     {
-        Cache::forget('settings.all');
+        Cache::forget('admin.settings.all');
     }
 }

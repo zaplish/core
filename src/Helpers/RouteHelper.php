@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Helpers;
+namespace Zaplish\Core\Helpers;
+
+use Illuminate\Support\Facades\Route;
 
 class RouteHelper
 {
@@ -9,7 +11,7 @@ class RouteHelper
      */
     static function routeHasTypeParameter(string $routeName): bool
     {
-        $route = \Illuminate\Support\Facades\Route::getRoutes()->getByName($routeName);
+        $route = Route::getRoutes()->getByName($routeName);
         if (!$route) {
             return false;
         }

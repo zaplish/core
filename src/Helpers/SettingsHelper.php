@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Helpers;
+namespace Zaplish\Core\Helpers;
 
-use App\Models\Setting;
+use Zaplish\Core\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 
 class SettingsHelper
@@ -16,7 +16,7 @@ class SettingsHelper
      */
     public static function get(string $key, $default = null)
     {
-        return Cache::rememberForever("settings.{$key}", function () use ($key, $default) {
+        return Cache::rememberForever("admin.settings.{$key}", function () use ($key, $default) {
             $setting = Setting::where('key', $key)->first();
             return $setting ? $setting->value : $default;
         });
@@ -37,7 +37,7 @@ class SettingsHelper
         );
 
         // Invalidate cache so next get() returns the fresh value
-        Cache::forget("settings.{$key}");
+        Cache::forget("admin.settings.{$key}");
     }
 
     /**
@@ -48,6 +48,6 @@ class SettingsHelper
      */
     public static function forget(string $key): void
     {
-        Cache::forget("settings.{$key}");
+        Cache::forget("admin.settings.{$key}");
     }
 }

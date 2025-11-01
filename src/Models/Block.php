@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace Zaplish\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Traits\TracksUserActivity;
+use Zaplish\Core\Traits\TracksUserActivity;
 
 class Block extends Model
 {

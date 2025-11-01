@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace Zaplish\Core\Helpers;
 
 use Illuminate\Support\Str;
 
@@ -19,15 +19,104 @@ class SlugHelper
 
         // Replace German umlauts / ß
         $replacements = [
-            'ö' => 'oe',
+            // 🇩🇪 German
             'ä' => 'ae',
+            'ö' => 'oe',
             'ü' => 'ue',
+            'Ä' => 'ae',
+            'Ö' => 'oe',
+            'Ü' => 'ue',
             'ß' => 'ss',
             'ẞ' => 'ss',
+
+            // 🇩🇰 / 🇳🇴 Danish / Norwegian
+            'æ' => 'ae',
+            'Æ' => 'ae',
+            'ø' => 'oe',
+            'Ø' => 'oe',
+            'å' => 'aa',
+            'Å' => 'aa',
+
+            // 🇮🇸 Icelandic
+            'ð' => 'd',
+            'Ð' => 'd',
+            'þ' => 'th',
+            'Þ' => 'th',
+
+            // 🇹🇷 Turkish
+            'ı' => 'i',
+            'İ' => 'i',
+            'ğ' => 'g',
+            'Ğ' => 'g',
+            'ş' => 's',
+            'Ş' => 's',
+            'ö' => 'o',
+            'Ö' => 'o',
+            'ü' => 'u',
+            'Ü' => 'u',
+            'ç' => 'c',
+            'Ç' => 'c',
+
+            // 🇵🇱 Polish
+            'ł' => 'l',
+            'Ł' => 'l',
+
+            // 🇭🇺 Hungarian
+            'ő' => 'o',
+            'Ő' => 'o',
+            'ű' => 'u',
+            'Ű' => 'u',
+
+            // 🇷🇺 / 🇧🇬 / 🇺🇦 Cyrillic (basic Latin transliteration)
+            'ж' => 'zh',
+            'Ж' => 'zh',
+            'ч' => 'ch',
+            'Ч' => 'ch',
+            'ш' => 'sh',
+            'Ш' => 'sh',
+            'щ' => 'shch',
+            'Щ' => 'shch',
+            'ю' => 'yu',
+            'Ю' => 'yu',
+            'я' => 'ya',
+            'Я' => 'ya',
+            'х' => 'kh',
+            'Х' => 'kh',
+            'ц' => 'ts',
+            'Ц' => 'ts',
+            'й' => 'i',
+            'Й' => 'i',
+            'ё' => 'e',
+            'Ё' => 'e',
+            'ы' => 'y',
+            'Ы' => 'y',
+
+            // 🇬🇷 Greek (basic Latin transliteration)
+            'θ' => 'th',
+            'Θ' => 'th',
+            'ψ' => 'ps',
+            'Ψ' => 'ps',
+            'χ' => 'ch',
+            'Χ' => 'ch',
+            'ξ' => 'x',
+            'Ξ' => 'x',
+            'η' => 'i',
+            'Η' => 'i',
+            'υ' => 'y',
+            'Υ' => 'y',
+            'ω' => 'o',
+            'Ω' => 'o',
+            'β' => 'v',
+            'Β' => 'v',
+            'ρ' => 'r',
+            'Ρ' => 'r',
+            'σ' => 's',
+            'ς' => 's',
+            'Σ' => 's',
         ];
         $value = strtr($value, $replacements);
-        
-        // Fallback: transliterate other non-ASCII chars (é → e, ł → l, ñ → n, etc.)
+
+        // Fallback: transliterate other non-ASCII chars (é → e, ñ → n, etc.)
         $value = Str::ascii($value);
 
         // Replace spaces and underscores with hyphens

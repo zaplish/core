@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace Zaplish\Core\Services;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
-use App\Models\ContentType;
-use App\Helpers\RouteHelper;
+use Zaplish\Core\Models\ContentType;
+use Zaplish\Core\Helpers\RouteHelper;
 
 class FormService
 {

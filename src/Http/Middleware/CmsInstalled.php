@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Zaplish\Core\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Zaplish\Core\Models\User;
 
-class IsCmsInstalled
+class CmsInstalled
 {
     public function handle(Request $request, Closure $next)
     {
-        $isInstalled = \App\Models\User::count() > 0 || file_exists(storage_path('installed.lock'));
+        $isInstalled = User::count() > 0 || file_exists(storage_path('installed.lock'));
 
         if (!$isInstalled) {
             // Allow access to the installer

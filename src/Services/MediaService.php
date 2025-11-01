@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace Zaplish\Core\Services;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;

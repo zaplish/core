@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace Zaplish\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\TracksUserActivity;
-use App\Helpers\SlugHelper;
-use App\Helpers\MediaHelper;
+use Zaplish\Core\Traits\TracksUserActivity;
+use Zaplish\Core\Helpers\SlugHelper;
+use Zaplish\Core\Helpers\MediaHelper;
 
 class Media extends Model
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace Zaplish\Core\Services;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
-use App\Models\ContentType;
-use App\Helpers\RouteHelper;
+use Zaplish\Core\Models\ContentType;
+use Zaplish\Core\Helpers\RouteHelper;
 
 class ListService
 {

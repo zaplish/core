@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace Zaplish\Core\Helpers;
 
 class ArrayHelper
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Helpers;
+namespace Zaplish\Core\Helpers;
 
-use App\Http\Middleware\SendMail;
+use Zaplish\Core\Http\Middleware\SendMail;
 use Sqids\Sqids;
 
 class MailHelper

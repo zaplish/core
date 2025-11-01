@@ -2,10 +2,19 @@
 
 namespace Zaplish\Core;
 
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
 use Zaplish\Core\Providers\AppServiceProvider;
 use Zaplish\Core\Providers\RouteServiceProvider;
+use Zaplish\Core\Http\Middleware\CmsInstalled;
+use Zaplish\Core\Http\Middleware\SetLocale;
+use Zaplish\Core\Http\Middleware\Authenticate;
+use Zaplish\Core\Http\Middleware\AuthGuard;
+use Zaplish\Core\Http\Middleware\AccessAdmin;
+use Zaplish\Core\Http\Middleware\AccessDeveloper;
+use Zaplish\Core\Http\Middleware\UpdateLastActivity;
+use Zaplish\Core\Http\Middleware\InjectContentType;
+use Zaplish\Core\Console\Commands\LinkAssetsCommand;
 
 class ZaplishServiceProvider extends ServiceProvider
 {
@@ -18,7 +27,7 @@ class ZaplishServiceProvider extends ServiceProvider
         $this->app->register(AppServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
 
-        // Merge core config defaults (optional)
+        // Merge core config defaults
         $this->mergeConfigFrom(__DIR__ . '/../config/cms.php', 'cms');
     }
 
@@ -27,30 +36,34 @@ class ZaplishServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Load routes, views, and translations
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'zaplish');
-        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'zaplish');
+        // Middlewares
+        Route::aliasMiddleware('cms.installed', CmsInstalled::class);
+        Route::aliasMiddleware('locale.set', SetLocale::class);
+        Route::aliasMiddleware('auth', Authenticate::class);
+        Route::aliasMiddleware('auth.guard', AuthGuard::class);
+        Route::aliasMiddleware('access.admin', AccessAdmin::class);
+        Route::aliasMiddleware('access.developer', AccessDeveloper::class);
+        Route::aliasMiddleware('user.last-activity', UpdateLastActivity::class);
+        Route::aliasMiddleware('content.inject-type', InjectContentType::class);
 
-        // Publish resources for app usage
+        // Core files
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views/admin', 'admin');
+        $this->loadTranslationsFrom(__DIR__ . '/../lang/admin', 'admin');
+
+        // Publish config
         $this->publishes([
             __DIR__ . '/../config/cms.php' => config_path('cms.php'),
         ], 'config');
 
+        // Publish assets
         $this->publishes([
-            __DIR__ . '/../resources/views' => resource_path('views/vendor/zaplish'),
-        ], 'views');
+            __DIR__ . '/../public/admin' => public_path('vendor/zaplish/admin'),
+        ], 'zaplish-assets');
 
-        $this->publishes([
-            __DIR__ . '/../lang' => resource_path('lang/vendor/zaplish'),
-        ], 'lang');
-
-        // Share global view data
-        View::share('zaplishVersion', '1.0.0');
-
-        // Optional: only load heavy logic if the app is booted
+        // Commands
         if ($this->app->runningInConsole()) {
-            // console-only tasks (artisan commands, publishables, etc.)
+            $this->commands([LinkAssetsCommand::class]);
         }
-    }
+    }   
 }

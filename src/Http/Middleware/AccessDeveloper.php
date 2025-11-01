@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Zaplish\Core\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;

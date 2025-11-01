@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Helpers;
+namespace Zaplish\Core\Helpers;
 
-use App\Models\User;
+use Zaplish\Core\Models\User;
 
 class CmsHelper
 {

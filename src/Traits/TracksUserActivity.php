@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Traits;
+namespace Zaplish\Core\Traits;
 
 use Illuminate\Support\Facades\Auth;
+use Zaplish\Core\Models\User;
 
 trait TracksUserActivity
 {
@@ -27,11 +28,11 @@ trait TracksUserActivity
 
     public function creator()
     {
-        return $this->belongsTo(\App\Models\User::class, 'created_by');
+        return $this->belongsTo(User::class, 'created_by');
     }
 
     public function updater()
     {
-        return $this->belongsTo(\App\Models\User::class, 'updated_by');
+        return $this->belongsTo(User::class, 'updated_by');
     }
 }
