@@ -39,8 +39,6 @@ class LinkAssetsCommand extends Command
         $coreTarget = public_path('vendor/zaplish/admin');
         $this->link($coreSource, $coreTarget, 'Admin assets');
 
-        $this->warn(config('zaplish.theme'));
-
         // Active theme assets
         $theme = config('zaplish.theme');
         if (!file_exists(base_path("themes/{$theme}/public"))) {
@@ -74,6 +72,8 @@ class LinkAssetsCommand extends Command
         }
 
         @mkdir(dirname($dest), 0755, true);
+
+        // TODO: Check for Symlink, maybe copy or have option
         symlink($src, $dest);
         $this->line("{$label} linked → {$dest}");
     }
