@@ -264,7 +264,7 @@ class AuthController extends Controller
             ]);
         }
 
-        $sqids = new Sqids(config('cms.sqids_salt'));
+        $sqids = new Sqids(config('zaplish.sqids_salt'));
 
         $userIdDecoded = $sqids->decode($userId);
         $userIdDecoded = empty($userIdDecoded) ? null : $userIdDecoded[0];
@@ -293,7 +293,7 @@ class AuthController extends Controller
      */
     public function newPasswordRequest()
     {
-        $sqids = new Sqids(config('cms.sqids_salt'));
+        $sqids = new Sqids(config('zaplish.sqids_salt'));
 
         $userId = request()->get('userId');
         $userIdDecoded = $sqids->decode($userId);

@@ -13,7 +13,7 @@ use Zaplish\Core\Http\Controllers\Admin\FormsController;
 use Zaplish\Core\Http\Controllers\Admin\BlocksController;
 use Zaplish\Core\Http\Controllers\Admin\ApiController;
 
-Route::middleware(['cms.installed', 'locale.set'])->group(function () {
+Route::middleware(['zaplish.installed', 'locale.set'])->group(function () {
     // Install
     Route::get('/install', [AuthController::class, 'install'])->name('install');
     Route::post('/install', [AuthController::class, 'installRequest'])->name('install-request');
@@ -31,7 +31,7 @@ Route::middleware(['cms.installed', 'locale.set'])->group(function () {
     Route::post('/new-password', [AuthController::class, 'newPasswordRequest'])->name('new-password-request');
 });
 
-Route::middleware(['auth', 'auth.guard', 'user.last-activity', 'cms.installed', 'locale.set'])->group(function () {
+Route::middleware(['auth', 'auth.guard', 'user.last-activity', 'zaplish.installed', 'locale.set'])->group(function () {
     // Auth
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::post('/delete-account', [AuthController::class, 'deleteAccount'])->name('delete-account');

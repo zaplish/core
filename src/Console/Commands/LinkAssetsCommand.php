@@ -3,16 +3,35 @@
 namespace Zaplish\Core\Console\Commands;
 
 use Illuminate\Console\Command;
+use Symfony\Component\Process\Process;
 
 class LinkAssetsCommand extends Command
 {
-    protected $signature = 'zaplish:assets:link 
+    protected $signature = 'zaplish:assets:link
+                            {--build : Build assets if missing before linking}
                             {--force : Overwrite existing links if they already exist}';
 
     protected $description = 'Create or refresh symlinks for Zaplish admin and active theme assets.';
 
     public function handle(): int
     {
+        if ($this->option('build')) {
+            $this->info('Building Zaplish assets...');
+            $process = new Process(['php', 'artisan', 'zaplish:assets:build']);
+            $process->setTimeout(5 * 60);
+            $process->run(function ($type, $buffer) {
+                echo $buffer;
+            });
+
+            if (!$process->isSuccessful()) {
+                $this->error('Asset build failed. Cannot link.');
+                return self::FAILURE;
+            }
+        } else {
+            $this->error('Admin assets missing. Run "php artisan zaplish:assets:build" first.');
+            return self::FAILURE;
+        }
+
         $this->info('Linking Zaplish assets...');
 
         // Core admin assets
@@ -20,8 +39,10 @@ class LinkAssetsCommand extends Command
         $coreTarget = public_path('vendor/zaplish/admin');
         $this->link($coreSource, $coreTarget, 'Admin assets');
 
+        $this->warn(config('zaplish.theme'));
+
         // Active theme assets
-        $theme = config('cms.theme');
+        $theme = config('zaplish.theme');
         if (!file_exists(base_path("themes/{$theme}/public"))) {
             $this->warn("Theme '{$theme}' not found. Skipping theme assets.");
             return Command::SUCCESS;

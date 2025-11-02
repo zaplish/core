@@ -11,11 +11,11 @@ class CmsSettingsSeeder extends Seeder
     {
         DB::table('settings')->insertOrIgnore([
             [
-                'key' => 'cms.name',
+                'key' => 'zaplish.name',
                 'value' => 'Zaplish',
             ],
             [
-                'key' => 'cms.theme',
+                'key' => 'zaplish.theme',
                 'value' => 'zaplish',
             ],
         ]);

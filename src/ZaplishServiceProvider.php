@@ -16,6 +16,7 @@ use Zaplish\Core\Http\Middleware\AccessDeveloper;
 use Zaplish\Core\Http\Middleware\UpdateLastActivity;
 use Zaplish\Core\Http\Middleware\InjectContentType;
 use Zaplish\Core\Console\Commands\LinkAssetsCommand;
+use Zaplish\Core\Console\Commands\BuildAssetsCommand;
 
 class ZaplishServiceProvider extends ServiceProvider
 {
@@ -30,7 +31,7 @@ class ZaplishServiceProvider extends ServiceProvider
         $this->app->register(ViewServiceProvider::class);
 
         // Merge core config defaults
-        $this->mergeConfigFrom(__DIR__ . '/../config/cms.php', 'cms');
+        $this->mergeConfigFrom(__DIR__ . '/../config/zaplish.php', 'zaplish');
     }
 
     /**
@@ -39,7 +40,7 @@ class ZaplishServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Middlewares
-        Route::aliasMiddleware('cms.installed', CmsInstalled::class);
+        Route::aliasMiddleware('zaplish.installed', CmsInstalled::class);
         Route::aliasMiddleware('locale.set', SetLocale::class);
         Route::aliasMiddleware('auth', Authenticate::class);
         Route::aliasMiddleware('auth.guard', AuthGuard::class);
@@ -55,17 +56,15 @@ class ZaplishServiceProvider extends ServiceProvider
 
         // Publish config
         $this->publishes([
-            __DIR__ . '/../config/cms.php' => config_path('cms.php'),
+            __DIR__ . '/../config/zaplish.php' => config_path('zaplish.php'),
         ], 'config');
-
-        // Publish assets
-        $this->publishes([
-            __DIR__ . '/../public/admin' => public_path('vendor/zaplish/admin'),
-        ], 'zaplish-assets');
 
         // Commands
         if ($this->app->runningInConsole()) {
-            $this->commands([LinkAssetsCommand::class]);
+            $this->commands([
+                LinkAssetsCommand::class,
+                BuildAssetsCommand::class,
+            ]);
         }
-    }   
+    }
 }

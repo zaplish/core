@@ -12,7 +12,7 @@ class MailHelper
      */
     static function resetPassword($user)
     {
-        $sqids = new Sqids(config('cms.sqids_salt'), 8);
+        $sqids = new Sqids(config('zaplish.sqids_salt'), 8);
         $userIdHashed = $sqids->encode([$user->id]);
 
         $buttonLink = route('admin.new-password', [

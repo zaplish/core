@@ -23,5 +23,5 @@
 </div>
 
 @include('admin::email.email-footer', [
-    'footerText' => __('admin::mail.resetPassword.footer', ['app-name' => config('cms.name')])
+    'footerText' => __('admin::mail.resetPassword.footer', ['app-name' => config('zaplish.name')])
 ])

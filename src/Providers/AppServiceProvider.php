@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\ServiceProvider;
-use Zaplish\Core\Services\Settings;
 use Zaplish\Core\Helpers\AssetHelper;
+use Zaplish\Core\Helpers\SettingsHelper;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,13 +16,13 @@ class AppServiceProvider extends ServiceProvider
     {
         // Dynamic settings
         try {
-            $theme = app(Settings::class)->get('cms.theme', 'zaplish');
-            $name = app(Settings::class)->get('cms.name', 'Zaplish');
-            Config::set('cms.theme', $theme);
-            Config::set('cms.name', $name);
+            $theme = SettingsHelper::get('zaplish.theme', 'zaplish');
+            $name = SettingsHelper::get('zaplish.name', 'Zaplish');
+            Config::set('zaplish.theme', $theme);
+            Config::set('zaplish.name', $name);
         } catch (\Throwable $e) {
-            Config::set('cms.theme', 'zaplish');
-            Config::set('cms.name', 'Zaplish');
+            Config::set('zaplish.theme', 'zaplish');
+            Config::set('zaplish.name', 'Zaplish');
         }
 
         $this->registerViewsAndTranslations();
@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
      */
     protected function registerViewsAndTranslations(): void
     {
-        $theme = config('cms.theme');
+        $theme = config('zaplish.theme');
 
         // Theme views
         View::addNamespace('theme', resource_path('themes/' . $theme . '/views'));

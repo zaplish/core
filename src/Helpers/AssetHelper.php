@@ -19,7 +19,7 @@ class AssetHelper
      */
     public static function theme(string $path): string
     {
-        $theme = config('cms.theme', 'default');
+        $theme = config('zaplish.theme', 'default');
         return '/themes/' . $theme . '/' . ltrim($path, '/');
     }
 

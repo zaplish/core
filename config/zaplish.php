@@ -10,7 +10,7 @@ return [
     | The prefix for the admin area.
     |
     */
-    'admin_prefix' => env('CMS_ADMIN_PREFIX', 'admin'),
+    'admin_prefix' => env('ZAPLISH_ADMIN_PREFIX', 'admin'),
 
     /*
     |--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ return [
     | Must be at least 16 characters. Do not share or change after installation.
     |
      */
-    'sqids_salt' => env('CMS_SQIDS_SALT'),
+    'sqids_salt' => env('ZAPLISH_SQIDS_SALT'),
 
     /*
     |--------------------------------------------------------------------------

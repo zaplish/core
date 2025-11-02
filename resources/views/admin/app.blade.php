@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    <title>{!! !empty($pageTitle) ? $pageTitle . ' · ' : '' !!}{!! config('cms.name') !!}</title>
+    <title>{!! !empty($pageTitle) ? $pageTitle . ' · ' : '' !!}{!! config('zaplish.name') !!}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#080b0f">

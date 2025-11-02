@@ -18,13 +18,13 @@ class SetLocale
     {
         // // Get language from path
         // $routeLanguageId = request()->segment(1);
-        // if (strlen($routeLanguageId) === 2 && array_key_exists($routeLanguageId, config('cms.available_locales'))) {
+        // if (strlen($routeLanguageId) === 2 && array_key_exists($routeLanguageId, config('zaplish.available_locales'))) {
         //     $languageId = $routeLanguageId;
         // }
 
         if ($request->user()) {
             // Update users language
-            if (!empty($languageId) && array_key_exists($languageId, config('cms.available_locales')) && $request->user()->language != $languageId) {
+            if (!empty($languageId) && array_key_exists($languageId, config('zaplish.available_locales')) && $request->user()->language != $languageId) {
                 User::where(['id' => $request->user()->id])->update(['language' => $languageId]);
             } else {
                 // Get users language
@@ -43,14 +43,14 @@ class SetLocale
             $firstLang = substr($acceptLanguage, 0, strpos($acceptLanguage, ',') ?: strlen($acceptLanguage));
             $langParts = explode('-', $firstLang);
             $acceptLanguageId = isset($langParts[0]) ? strtolower($langParts[0]) : null;
-            if (strlen($acceptLanguageId) === 2 && array_key_exists($acceptLanguageId, config('cms.available_locales'))) {
+            if (strlen($acceptLanguageId) === 2 && array_key_exists($acceptLanguageId, config('zaplish.available_locales'))) {
                 $languageId = $acceptLanguageId;
             }
         }
 
         // Use fallback language
-        if (empty($languageId) || !array_key_exists($languageId, config('cms.available_locales'))) {
-            $languageId = config('cms.fallback_locale');
+        if (empty($languageId) || !array_key_exists($languageId, config('zaplish.available_locales'))) {
+            $languageId = config('zaplish.fallback_locale');
         }
 
         // Set language
