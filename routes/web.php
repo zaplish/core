@@ -5,10 +5,10 @@ use Illuminate\Support\Facades\Route;
 use Zaplish\Core\Http\Controllers\Frontend\FrontendController;
 use Zaplish\Core\Http\Controllers\MediaController;
 
-
-Route::middleware(['web', 'isCmsInstalled'])->group(function () {
+// Main frontend routes
+Route::middleware(['web', 'zaplish.installed'])->group(function () {
     // Home
-    Route::get('/', [FrontendController::class, 'index']);
+    Route::get('/', [FrontendController::class, 'home'])->name('frontend.home');
 });
 
 // Media
@@ -18,3 +18,9 @@ Route::middleware(['web'])->name('media.')->group(function () {
         ->where('size', '^(large|medium|small|thumb|preview)?$')
         ->name('show');
 });
+
+// Fallback: all other frontend pages
+Route::middleware(['web', 'zaplish.installed'])
+    ->get('/{slug?}', [FrontendController::class, 'page'])
+    ->where('slug', '.*')
+    ->name('frontend.page');
