@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Mail;
+namespace Zaplish\Core\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Mail extends Mailable
+class DefaultMail extends Mailable
 {
     use Queueable, SerializesModels;
 

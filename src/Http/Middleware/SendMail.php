@@ -2,6 +2,7 @@
 
 namespace Zaplish\Core\Http\Middleware;
 
+use Zaplish\Core\Mail\DefaultMail;
 use Illuminate\Support\Facades\Mail;
 
 class SendMail
@@ -19,6 +20,6 @@ class SendMail
             'data' => $data
         ];
 
-        Mail::to($recipient)->send(new \App\Mail\Mail($mailData));
+        Mail::to($recipient)->send(new DefaultMail($mailData));
     }
 }
